@@ -36,20 +36,23 @@ Click on the menu Login/Register and register for an account
 ![Screenshot 2023-06-10 214003](https://github.com/praveenst13/sqlinjection/assets/118787793/dfe4513c-3c0d-43e0-b1e4-ad4baee43b98)
 
 Click on the link “Please register here”
-![Screenshot 2023-06-10 214117](https://github.com/praveenst13/sqlinjection/assets/118787793/abd46fae-74a4-48e7-9f95-8eb1470cfe3c)
+![Screenshot from 2023-11-07 17-55-53](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/67d343ca-7551-4036-a6d8-2fd2ef459ad0)
+
 
 Click on “Create Account” to display the following page:
-![Screenshot 2023-06-10 214903](https://github.com/praveenst13/sqlinjection/assets/118787793/499aca4d-391b-4f0e-ac33-31ace3337955)
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/890cf293-661f-4b1c-ad6f-4038c674070b)
+
 The login structure we will use in our examples is straightforward. It contains two input fields (username and password), which are both vulnerable. The back-end content creates a query to approve the username and secret key given by the client. Here is an outline of the page rationale:
 
 ($query = “SELECT * FROM users WHERE username=’$_POST[username]’ AND password=’$_POST[password]’“;).
  For the username put “ganesh” or “anything” and for the password put (anything’ or ‘1’=’1) or (admin’ or ‘1’=’1) then try to log in, and you’ll be presented with an admin login page.
 
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/9b7a9e9d-a2a5-486c-880e-34212b9030b2)
 
-![Screenshot 2023-06-10 223438](https://github.com/praveenst13/sqlinjection/assets/118787793/8ae683e6-f569-42f3-9c38-82bc3f9e6f41)
 
 Click “Login”. The logged in page will show as below:
-![Screenshot 2023-06-10 223535](https://github.com/praveenst13/sqlinjection/assets/118787793/037084b7-47fb-40ac-85cc-43f91dde84b5)
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/75f245cd-c16b-4f55-b9a0-b99dd1015445)
+
 
 
 
@@ -59,7 +62,8 @@ The username field is vulnerable. Put (ganesh’ #) or (ganesh’--) in the user
 
 Now after logging out you will see the login page. In the login page give ganesh’ # . You can see the page now enters into the administrator page as before when giving the password. 
 
-![Screenshot 2023-06-10 223645](https://github.com/praveenst13/sqlinjection/assets/118787793/cb326fd0-509f-4df9-b97d-8a65bf1f0716)
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/299f0b51-7ebb-43e1-ba5f-d1eaa8872c34)
+
 
 Click the login button and you will see it enter into the administrator page.
 ![Screenshot 2023-06-10 223656](https://github.com/praveenst13/sqlinjection/assets/118787793/ac33b189-494b-4a5f-bce2-b840ab35e5fc)
@@ -71,14 +75,16 @@ we will be using the “User Info” page from Mutillidae to perform a Union-Bas
 
 After logging out, Now choose the menu as shown below:
 ![img](Screenshot_2023-06-10_13_13_23.png)
-![Screenshot 2023-06-10 224221](https://github.com/praveenst13/sqlinjection/assets/118787793/123993df-2a2b-455f-abde-8904a72314dd)
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/34b32ad7-16fd-40b8-aca4-d32c2d071d03)
 
 
-![Screenshot 2023-06-10 224420](https://github.com/praveenst13/sqlinjection/assets/118787793/9b365f7e-d511-4ff4-a5fb-d33ee779cb86)
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/8a259e3e-d386-4448-95b5-05e208cb0820)
+
 
 ![Screenshot 2023-06-10 224452](https://github.com/praveenst13/sqlinjection/assets/118787793/7b70cf08-aa04-4ba1-b7e5-12f048c98c57)
 
-![Screenshot 2023-06-10 224520](https://github.com/praveenst13/sqlinjection/assets/118787793/713a7087-4c4a-49a0-8c23-92af437df4b1)
+![Screenshot from 2023-11-07 18-26-38](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/4e134269-9d74-4774-b8e7-9f20afd97973)
+
 
 ![Screenshot 2023-06-10 224530](https://github.com/praveenst13/sqlinjection/assets/118787793/a242176f-df4f-4eb2-8296-0671fd7d7264)
 From this point, all our attack vectors will be performed in the URL section of the page using the Union-Based technique.There are two different ways to discover how many columns are selected by the original query. The first is to infuse an “ORDER BY” statement indicating a column number. Given the column number specified is higher than the number of columns in the “SELECT” statement, an error will be returned.
@@ -106,12 +112,13 @@ When we ordered by 5, it worked and displayed some information. It means there a
  As it is having 5 columns the query worked fine and it provides the correct result
 
 
-![Screenshot 2023-06-10 224939](https://github.com/praveenst13/sqlinjection/assets/118787793/7a660480-5cb6-4d86-acd1-08f7a4d5e2fa)
+![Screenshot from 2023-11-07 19-22-07](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/ca98a731-d4e4-4159-b4b7-e64d9731cc01)
+
 
 
 Instead of using the "order by" option, let’s use the "union select" option and provide all five columns. Ex: (union select 1,2,3,4,5)
 
-![Screenshot 2023-06-10 225037](https://github.com/praveenst13/sqlinjection/assets/118787793/1c7ac260-3410-4f75-8091-2cda6b7f20c0)
+
 As given in the screenshot below columns 2,3,4 are usable in which we can substitute any sql commands to extract necessary information.
 ![Screenshot 2023-06-10 225105](https://github.com/praveenst13/sqlinjection/assets/118787793/12ebac90-8efb-4558-a442-541029220fa3)
  Now we will substitute some few commands like database(), user(), version() to obtain the information regarding the database name, username and version of the database.
@@ -150,8 +157,9 @@ Here we are trying to extract column names from the “accounts” table.
 The column names of the accounts is displayed below for the following url:
 
 http://192.168.43.145/mutillidae/index.php?page=user-info.php&username=praveen%27union%20select%201,column_name,null,null,5%20from%20information_schema.columns%20where%20table_name=%27accounts%27%23&password=&user-info-php-submit-button=View+Account+Details 
+![image](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/50602322-de20-428c-9c91-6cad6837bc8f)
 
-![Screenshot 2023-06-10 225659](https://github.com/praveenst13/sqlinjection/assets/118787793/c820f87a-30cb-485b-b423-f6fd0e67c96e)
+
 
 
 
@@ -160,10 +168,10 @@ http://192.168.43.145/mutillidae/index.php?page=user-info.php&username=praveen%2
 Once we discovered all available column names, we can extract information from them by just adding those column names in our query sentence.
 
 Ex: (union select 1,username,password,is_admin,5 from accounts).
+http://192.168.156.78/mutillidae/index.php?page=user-info.php&username=naveenkumar%27order%20by%206%23&password=&user-info-php-submit-button=View+Account+Details
 
-http://192.168.1.9/mutillidae/index.php?page=user-info.php&username=praveen%27union%20select%201,username,password,is_admin,5%20from%20accounts%23&password=&user-info-php-submit-button=View+Account+Details
+![Screenshot from 2023-11-07 19-14-47](https://github.com/NAVEENKUMAR4325/sqlinjection/assets/119479566/a7d4f1fd-7468-4e66-a4dc-c682815f6316)
 
-![Screenshot 2023-06-10 225759](https://github.com/praveenst13/sqlinjection/assets/118787793/f7dd79fb-c11c-41f3-8019-06685e9cd759)
 
 
 ## Reading and writing files on the web-server
